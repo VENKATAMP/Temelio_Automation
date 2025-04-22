@@ -1,0 +1,9 @@
+node_modules/
+/test-results/
+/playwright/.cache/
+package-lock.json
+/trace-report
+results.json
+playwright-report/index.html
+/playwright-report
+playwright-report/index.html
