@@ -1,7 +1,10 @@
-import { test } from '@playwright/test';
+import test from '../src/lib/BaseTest';
+import {faker} from "@faker-js/faker";
+import ENV from "../src/lib/env";
 
-//Do not delete. This test is to verify the build
-test('Test case , @BuildTest', async () => {
-  console.log("Running BuildTest");
+
+let primaryInvistigatorEmail=faker.internet.email({ firstName: 'TestUser' });
+test.skip('Verify Login and Navigate to respective Admin Settings page, @AdminSettings', async ({ loginPage, adminSettingsPage,dashboardPage }) => {
+  await loginPage.login(ENV.uname, ENV.pwd);
 });
 

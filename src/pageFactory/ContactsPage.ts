@@ -4,7 +4,8 @@ export class ContactsPage {
     //create objects
     readonly page: Page;
     readonly context: BrowserContext;
-    readonly LOCATOR_EXAMPLE: Locator;
+    readonly granteesTab: Locator;
+    readonly peoplesTab: Locator;
 
 
 
@@ -12,10 +13,14 @@ export class ContactsPage {
     constructor(page: Page, context: BrowserContext) {
         this.page = page;
         this.context = context;
-        this.LOCATOR_EXAMPLE = page.locator("LOCATOR HERE");
-
-
+        this.granteesTab = page.getByText("Grantees");  
+        this.peoplesTab = page.getByText("People");  
     }
 
-
+    async navigateGranteesTab() {
+        await  this.granteesTab.click();
+    }
+    async navigatePeopleTab() {
+        await  this.peoplesTab.click();
+    }
 }

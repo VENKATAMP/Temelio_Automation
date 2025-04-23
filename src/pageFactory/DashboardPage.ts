@@ -5,19 +5,28 @@ export class DashboardPage {
     readonly dashboardTab: Locator;
     readonly menuListIcon: Locator;
     readonly userSettingsOption: Locator;
-    readonly adminTab: Locator;
-    readonly addTeamMemberBtn: Locator;
+    readonly contactsTab: Locator;
+    
+
+    
     
 
     constructor(page: Page, context: BrowserContext) {
         this.page = page;
         this.context = context;
         this.dashboardTab = page.getByText("Dashboard");
-        this.menuListIcon= page.locator("//button[@data-sentry-element='MenuButton'][@id='menu-button-:ro:']");
-        this.userSettingsOption= page.getByText("User Settings");
-        this.adminTab = page.locator("//div[text()='Admin']");
-        this.addTeamMemberBtn = page.locator("//button[contains(text(),'Add Team Member')]");
-        
-        
+        this.menuListIcon= page.locator("//button[@data-sentry-element='MenuButton'][@aria-label='More']");
+        this.userSettingsOption= page.getByText("User Settings"); 
+        this.contactsTab = page.getByText("Contacts");  
+    }
+    async navigateUserSettings() {
+        await this.menuListIcon.scrollIntoViewIfNeeded();
+        await  this.menuListIcon.click();
+        await  this.userSettingsOption.click();
+        await this.page.waitForLoadState("domcontentloaded");
+    }
+    async navigateContacts() {
+        await  this.contactsTab.click();
+        await this.page.waitForLoadState("domcontentloaded");
     }
 }

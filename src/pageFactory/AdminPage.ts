@@ -9,4 +9,5 @@ export class AdminPage {
         this.page = page;
         this.context = context;
     }
+    
 }

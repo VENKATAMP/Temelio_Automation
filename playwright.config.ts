@@ -6,7 +6,7 @@ const { defineConfig, devices } = require('@playwright/test');
 module.exports = defineConfig({
   testDir: './tests/',
   /* Maximum time one test can run for. */
-  timeout: 240000,
+  timeout: 30000,
 
   expect: {
     /**
@@ -38,8 +38,7 @@ module.exports = defineConfig({
     {
       name: 'test tags',
       use: { ...devices['Desktop Chrome'],
-      launchOptions:{args:['--deny-permission-prompts','--start-fullscreen']},
-      baseURL: process.env.baseURL
+      launchOptions:{args:['--deny-permission-prompts']},
     }, 
     },
   ],
