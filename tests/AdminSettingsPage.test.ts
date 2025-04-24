@@ -6,7 +6,7 @@ import ENV from "../src/lib/env";
 let email=faker.internet.email({ firstName: 'testusermail' });
 let userTitle=faker.internet.userName({ firstName: 'Title' });
 let newTitle=userTitle+"Updated";
-test('Verify Login and Navigate to respective Admin Settings page, @AdminSettings', async ({ loginPage, adminSettingsPage,dashboardPage }) => {
+test('Verify Admin Settings page with Add New User, Edit and Delete functionality, @AdminSettings @Temelio', async ({ loginPage, adminSettingsPage,dashboardPage }) => {
   await loginPage.login(ENV.uname, ENV.pwd);
   await dashboardPage.navigateUserSettings();
   await adminSettingsPage.navigateAdminTab();

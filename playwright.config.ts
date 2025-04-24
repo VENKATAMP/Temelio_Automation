@@ -18,15 +18,15 @@ module.exports = defineConfig({
 
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
-  retries: process.env.CI ? 2 : 0,
-  workers: process.env.CI ? 1 : undefined,
+  retries: process.env.CI ? 2 : 1,
+  workers: process.env.CI ? 1 : 1,
 
   outputDir: "trace-report",
   use: {
     actionTimeout: 0,
     trace: 'off',
-    video: 'off',
-    screenshot: 'on',
+    video: 'on',
+    screenshot: 'only-on-failure',
     headless: false,
     
   },

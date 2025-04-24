@@ -6,17 +6,18 @@ on:
         type: choice
         description: Select the tag
         options:
-          - login
-          - UI
-        default: login
+          - AdminSettings
+          - Contacts
+          - Temelio
+        default: Temelio
       environment:
         type: choice
         description:  Select the environment
         options:
+          - test
+          - uat
           - prod
-          - dev
-          - qa
-        default: dev  
+        default: test  
 jobs:
   test:
     timeout-minutes: 60
