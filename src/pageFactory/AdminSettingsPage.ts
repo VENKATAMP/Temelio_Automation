@@ -16,6 +16,10 @@ export class AdminSettingsPage {
     readonly newUserNameStr:Locator;
     readonly editBtnStr:Locator;
     readonly deleteBtnStr:Locator;
+    readonly programAresTxt: Locator;
+    readonly programAreaAddBtn: Locator;
+    newProgramToggleBtn: String;
+    newProgramToggleSpan: String;
    
 
     //locate elements
@@ -33,7 +37,10 @@ export class AdminSettingsPage {
         this.newUserNameStr=page.getByRole('table').getByRole('row', { name: 'TemelioUser' }).getByRole('cell').nth(1);
         this.editBtnStr=page.getByRole('table').getByRole('row', { name: 'TemelioUser' }).getByRole('cell').getByRole('button',{name:'Edit'});
         this.deleteBtnStr=page.getByRole('table').getByRole('row', { name: 'TemelioUser' }).getByRole('cell').getByRole('button',{name:'Delete'});
-        
+        this.programAresTxt = page.getByPlaceholder("Program Area");
+        this.programAreaAddBtn = page.locator("//input[@placeholder='Program Area']/following-sibling::button");
+        this.newProgramToggleBtn = "//span[text()='xxx']/ancestor::div[@data-sentry-component='EditableProgramArea']//input";
+        this.newProgramToggleSpan = "//span[text()='xxx']/ancestor::div[@data-sentry-component='EditableProgramArea']//span[@tabindex='0']";
     }
     
     async navigateAdminTab() {
@@ -69,5 +76,19 @@ export class AdminSettingsPage {
         await this.page.waitForTimeout(2000);
         expect(await this.newUserNameStr).not.toBeVisible();
     }
+
+    async newProgramArea(program:string) {
+        await  this.programAresTxt.scrollIntoViewIfNeeded();
+        await  this.programAresTxt.fill(program); 
+        await this.page.waitForTimeout(5000);
+        await this.programAreaAddBtn.click();
+        await this.page.waitForTimeout(8000);
+        expect(await this.page.locator(this.newProgramToggleBtn.replace("xxx",program)).first().getAttribute("aria-checked")).toBe("true");
+        await this.page.waitForTimeout(8000);
+        await this.page.locator(this.newProgramToggleBtn.replace("xxx",program)).first().scrollIntoViewIfNeeded();
+        await this.page.locator(this.newProgramToggleSpan.replace("xxx",program)).first().click();
+        expect(await this.page.locator(this.newProgramToggleBtn.replace("xxx",program)).first().getAttribute("aria-checked")).toBe("false");
+    }
+
 
 }

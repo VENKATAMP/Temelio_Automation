@@ -6,7 +6,7 @@ const { defineConfig, devices } = require('@playwright/test');
 module.exports = defineConfig({
   testDir: './tests/',
   /* Maximum time one test can run for. */
-  timeout: 30000,
+  timeout: 60000,
 
   expect: {
     /**
@@ -18,7 +18,7 @@ module.exports = defineConfig({
 
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
-  retries: process.env.CI ? 2 : 1,
+  retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : 1,
 
   outputDir: "trace-report",

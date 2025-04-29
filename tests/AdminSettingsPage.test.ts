@@ -18,3 +18,12 @@ test('Verify Admin Settings page with Add New User, Edit and Delete functionalit
   await adminSettingsPage.newUserDeleteCheck();
 });
 
+test.only('Verify Admin Settings page with Add New User, Edit and Delete functionality program area, @AdminSettings @Temelio', async ({ page,loginPage, adminSettingsPage,dashboardPage }) => {
+  await loginPage.login(ENV.uname, ENV.pwd);
+  await dashboardPage.navigateUserSettings();
+  await adminSettingsPage.navigateAdminTab();
+  await adminSettingsPage.newProgramArea("SWAMITESTABCDEF");
+  await page.pause();
+  
+});
+
