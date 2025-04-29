@@ -22,8 +22,6 @@ test.only('Verify Admin Settings page with Add New User, Edit and Delete functio
   await loginPage.login(ENV.uname, ENV.pwd);
   await dashboardPage.navigateUserSettings();
   await adminSettingsPage.navigateAdminTab();
-  await adminSettingsPage.newProgramArea("SWAMITESTABCDEF");
-  await page.pause();
-  
+  await adminSettingsPage.newProgramArea("SWAMITESTABCDEF");  
 });
 
